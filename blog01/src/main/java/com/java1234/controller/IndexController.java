@@ -23,7 +23,7 @@ import com.java1234.util.PageUtil;
 import com.java1234.util.StringUtil;
 
 /**
- * Ö÷Ò³Controller
+ * ï¿½ï¿½Ò³Controller
  * @author Administrator
  *
  */
@@ -36,7 +36,7 @@ public class IndexController {
 	
 	
 	/**
-	 * ÇëÇóÖ÷Ò³
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³
 	 * @return
 	 * @throws Exception
 	 */
@@ -57,7 +57,7 @@ public class IndexController {
 			List<String> imagesList=blog.getImagesList();
 			String blogInfo=blog.getContent();
 			Document doc=Jsoup.parse(blogInfo);
-			Elements jpgs=doc.select("img[src$=.jpg]"); //¡¡²éÕÒÀ©Õ¹ÃûÊÇjpgµÄÍ¼Æ¬
+			Elements jpgs=doc.select("img[src$=.jpg]"); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½jpgï¿½ï¿½Í¼Æ¬
 			for(int i=0;i<jpgs.size();i++){
 				Element jpg=jpgs.get(i);
 				imagesList.add(jpg.toString());
@@ -67,7 +67,7 @@ public class IndexController {
 			}
 		}
 		mav.addObject("blogList", blogList);
-		StringBuffer param=new StringBuffer(); // ²éÑ¯²ÎÊý
+		StringBuffer param=new StringBuffer(); // ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 		if(StringUtil.isNotEmpty(typeId)){
 			param.append("typeId="+typeId+"&");
 		}
@@ -76,13 +76,13 @@ public class IndexController {
 		}
 		mav.addObject("pageCode",PageUtil.genPagination(request.getContextPath()+"/index.html", blogService.getTotal(map), Integer.parseInt(page), 10, param.toString()));
 		mav.addObject("mainPage", "foreground/blog/list.jsp");
-		mav.addObject("pageTitle","Java¿ªÔ´²©¿ÍÏµÍ³");
+		mav.addObject("pageTitle","Javaåšå®¢ç³»ç»Ÿ");
 		mav.setViewName("mainTemp");
 		return mav;
 	}
 	
 	/**
-	 * Ô´ÂëÏÂÔØ
+	 * Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 * @throws Exception
 	 */
@@ -90,7 +90,7 @@ public class IndexController {
 	public ModelAndView download()throws Exception{
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("mainPage", "foreground/system/download.jsp");
-		mav.addObject("pageTitle","±¾Õ¾Ô´ÂëÏÂÔØÒ³Ãæ_Java¿ªÔ´²©¿ÍÏµÍ³");
+		mav.addObject("pageTitle","ï¿½ï¿½Õ¾Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½_Javaï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ÏµÍ³");
 		mav.setViewName("mainTemp");
 		return mav;
 	}

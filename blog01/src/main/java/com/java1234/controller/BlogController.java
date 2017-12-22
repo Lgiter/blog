@@ -21,13 +21,14 @@ import com.java1234.service.CommentService;
 import com.java1234.util.StringUtil;
 
 /**
- * ²©¿ÍController²ã
+ * ï¿½ï¿½ï¿½ï¿½Controllerï¿½ï¿½
  * @author Administrator
  *
  */
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
+	
 
 	@Resource
 	private BlogService blogService;
@@ -35,12 +36,12 @@ public class BlogController {
 	@Resource
 	private CommentService commentService;
 	
-	// ²©¿ÍË÷Òý
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private BlogIndex blogIndex=new BlogIndex();
 	
 	
 	/**
-	 * ÇëÇó²©¿ÍÏêÏ¸ÐÅÏ¢
+	 * ï¿½ï¿½ï¿½ó²©¿ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ï¢
 	 * @return
 	 * @throws Exception
 	 */
@@ -56,21 +57,21 @@ public class BlogController {
 			mav.addObject("keyWords",null);			
 		}
 		mav.addObject("blog", blog);
-		blog.setClickHit(blog.getClickHit()+1); // ²©¿Íµã»÷´ÎÊý¼Ó1
+		blog.setClickHit(blog.getClickHit()+1); // ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1
 		blogService.update(blog);
 		Map<String,Object> map=new HashMap<String,Object>();
 		map.put("blogId", blog.getId());
-		map.put("state", 1); // ²éÑ¯ÉóºËÍ¨¹ýµÄÆÀÂÛ
+		map.put("state", 1); // ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		mav.addObject("commentList", commentService.list(map)); 
 		mav.addObject("pageCode", this.genUpAndDownPageCode(blogService.getLastBlog(id),blogService.getNextBlog(id),request.getServletContext().getContextPath()));
 		mav.addObject("mainPage", "foreground/blog/view.jsp");
-		mav.addObject("pageTitle",blog.getTitle()+"_Java¿ªÔ´²©¿ÍÏµÍ³");
+		mav.addObject("pageTitle",blog.getTitle()+"_Javaï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ÏµÍ³");
 		mav.setViewName("mainTemp");
 		return mav;
 	}
 	
 	/**
-	 * ¸ù¾Ý¹Ø¼ü×Ö²éÑ¯Ïà¹Ø²©¿ÍÐÅÏ¢
+	 * ï¿½ï¿½ï¿½Ý¹Ø¼ï¿½ï¿½Ö²ï¿½Ñ¯ï¿½ï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 * @param q
 	 * @return
 	 * @throws Exception
@@ -88,13 +89,13 @@ public class BlogController {
 		mav.addObject("pageCode",this.genUpAndDownPageCode(Integer.parseInt(page), blogList.size(), q,10,request.getServletContext().getContextPath()));
 		mav.addObject("q",q);
 		mav.addObject("resultTotal",blogList.size());
-		mav.addObject("pageTitle","ËÑË÷¹Ø¼ü×Ö'"+q+"'½á¹ûÒ³Ãæ_Java¿ªÔ´²©¿ÍÏµÍ³");
+		mav.addObject("pageTitle","ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½'"+q+"'ï¿½ï¿½ï¿½Ò³ï¿½ï¿½_Javaï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ÏµÍ³");
 		mav.setViewName("mainTemp");
 		return mav;
 	}
 	
 	/**
-	 * »ñÈ¡ÏÂÒ»Æª²©¿ÍºÍÏÂÒ»Æª²©¿Í´úÂë
+	 * ï¿½ï¿½È¡ï¿½ï¿½Ò»Æªï¿½ï¿½ï¿½Íºï¿½ï¿½ï¿½Ò»Æªï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½
 	 * @param lastBlog
 	 * @param nextBlog
 	 * @return
@@ -102,24 +103,24 @@ public class BlogController {
 	private String genUpAndDownPageCode(Blog lastBlog,Blog nextBlog,String projectContext){
 		StringBuffer pageCode=new StringBuffer();
 		if(lastBlog==null || lastBlog.getId()==null){
-			pageCode.append("<p>ÉÏÒ»Æª£ºÃ»ÓÐÁË</p>");
+			pageCode.append("<p>ï¿½ï¿½Ò»Æªï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½</p>");
 		}else{
-			pageCode.append("<p>ÉÏÒ»Æª£º<a href='"+projectContext+"/blog/articles/"+lastBlog.getId()+".html'>"+lastBlog.getTitle()+"</a></p>");
+			pageCode.append("<p>ï¿½ï¿½Ò»Æªï¿½ï¿½<a href='"+projectContext+"/blog/articles/"+lastBlog.getId()+".html'>"+lastBlog.getTitle()+"</a></p>");
 		}
 		if(nextBlog==null || nextBlog.getId()==null){
-			pageCode.append("<p>ÏÂÒ»Æª£ºÃ»ÓÐÁË</p>");
+			pageCode.append("<p>ï¿½ï¿½Ò»Æªï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½</p>");
 		}else{
-			pageCode.append("<p>ÏÂÒ»Æª£º<a href='"+projectContext+"/blog/articles/"+nextBlog.getId()+".html'>"+nextBlog.getTitle()+"</a></p>");
+			pageCode.append("<p>ï¿½ï¿½Ò»Æªï¿½ï¿½<a href='"+projectContext+"/blog/articles/"+nextBlog.getId()+".html'>"+nextBlog.getTitle()+"</a></p>");
 		}
 		return pageCode.toString();
 	}
 	
 	/**
-	 * »ñÈ¡ÉÏÒ»Ò³£¬ÏÂÒ»Ò³´úÂë ²éÑ¯²©¿ÍÓÃµ½
-	 * @param page µ±Ç°Ò³
-	 * @param totalNum ×Ü¼ÇÂ¼Êý
-	 * @param q ²éÑ¯¹Ø¼ü×Ö
-	 * @param pageSize Ã¿Ò³´óÐ¡
+	 * ï¿½ï¿½È¡ï¿½ï¿½Ò»Ò³ï¿½ï¿½ï¿½ï¿½Ò»Ò³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½
+	 * @param page ï¿½ï¿½Ç°Ò³
+	 * @param totalNum ï¿½Ü¼ï¿½Â¼ï¿½ï¿½
+	 * @param q ï¿½ï¿½Ñ¯ï¿½Ø¼ï¿½ï¿½ï¿½
+	 * @param pageSize Ã¿Ò³ï¿½ï¿½Ð¡
 	 * @param projectContext
 	 * @return
 	 */
@@ -132,14 +133,14 @@ public class BlogController {
 			pageCode.append("<nav>");
 			pageCode.append("<ul class='pager' >");
 			if(page>1){
-				pageCode.append("<li><a href='"+projectContext+"/blog/q.html?page="+(page-1)+"&q="+q+"'>ÉÏÒ»Ò³</a></li>");
+				pageCode.append("<li><a href='"+projectContext+"/blog/q.html?page="+(page-1)+"&q="+q+"'>ï¿½ï¿½Ò»Ò³</a></li>");
 			}else{
-				pageCode.append("<li class='disabled'><a href='#'>ÉÏÒ»Ò³</a></li>");
+				pageCode.append("<li class='disabled'><a href='#'>ï¿½ï¿½Ò»Ò³</a></li>");
 			}
 			if(page<totalPage){
-				pageCode.append("<li><a href='"+projectContext+"/blog/q.html?page="+(page+1)+"&q="+q+"'>ÏÂÒ»Ò³</a></li>");				
+				pageCode.append("<li><a href='"+projectContext+"/blog/q.html?page="+(page+1)+"&q="+q+"'>ï¿½ï¿½Ò»Ò³</a></li>");				
 			}else{
-				pageCode.append("<li class='disabled'><a href='#'>ÏÂÒ»Ò³</a></li>");				
+				pageCode.append("<li class='disabled'><a href='#'>ï¿½ï¿½Ò»Ò³</a></li>");				
 			}
 			pageCode.append("</ul>");
 			pageCode.append("</nav>");

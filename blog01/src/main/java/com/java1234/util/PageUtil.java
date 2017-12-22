@@ -1,31 +1,31 @@
 package com.java1234.util;
 
 /**
- * ·ÖÒ³¹¤¾ßÀà
+ * ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author Administrator
  *
  */
 public class PageUtil {
 
 	/**
-	 * Éú³É·ÖÒ³´úÂë
-	 * @param targetUrl Ä¿±êµØÖ·
-	 * @param totalNum ×Ü¼ÇÂ¼Êı
-	 * @param currentPage µ±Ç°Ò³
-	 * @param pageSize Ã¿Ò³´óĞ¡
+	 * ï¿½ï¿½ï¿½É·ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
+	 * @param targetUrl Ä¿ï¿½ï¿½ï¿½Ö·
+	 * @param totalNum ï¿½Ü¼ï¿½Â¼ï¿½ï¿½
+	 * @param currentPage ï¿½ï¿½Ç°Ò³
+	 * @param pageSize Ã¿Ò³ï¿½ï¿½Ğ¡
 	 * @return
 	 */
 	public static String genPagination(String targetUrl,long totalNum,int currentPage,int pageSize,String param){
 		long totalPage=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
 		if(totalPage==0){
-			return "Î´²éÑ¯µ½Êı¾İ";
+			return "æ²¡æœ‰æ•°æ®";
 		}else{
 			StringBuffer pageCode=new StringBuffer();
-			pageCode.append("<li><a href='"+targetUrl+"?page=1&"+param+"'>Ê×Ò³</a></li>");
+			pageCode.append("<li><a href='"+targetUrl+"?page=1&"+param+"'>é¦–é¡µ</a></li>");
 			if(currentPage>1){
-				pageCode.append("<li><a href='"+targetUrl+"?page="+(currentPage-1)+"&"+param+"'>ÉÏÒ»Ò³</a></li>");			
+				pageCode.append("<li><a href='"+targetUrl+"?page="+(currentPage-1)+"&"+param+"'>ä¸Šä¸€é¡µ</a></li>");			
 			}else{
-				pageCode.append("<li class='disabled'><a href='"+targetUrl+"?page="+(currentPage-1)+"&"+param+"'>ÉÏÒ»Ò³</a></li>");		
+				pageCode.append("<li class='disabled'><a href='"+targetUrl+"?page="+(currentPage-1)+"&"+param+"'>ä¸Šä¸€é¡µ</a></li>");		
 			}
 			for(int i=currentPage-2;i<=currentPage+2;i++){
 				if(i<1||i>totalPage){
@@ -38,11 +38,11 @@ public class PageUtil {
 				}
 			}
 			if(currentPage<totalPage){
-				pageCode.append("<li><a href='"+targetUrl+"?page="+(currentPage+1)+"&"+param+"'>ÏÂÒ»Ò³</a></li>");		
+				pageCode.append("<li><a href='"+targetUrl+"?page="+(currentPage+1)+"&"+param+"'>ä¸‹ä¸€é¡µ</a></li>");		
 			}else{
-				pageCode.append("<li class='disabled'><a href='"+targetUrl+"?page="+(currentPage+1)+"&"+param+"'>ÏÂÒ»Ò³</a></li>");	
+				pageCode.append("<li class='disabled'><a href='"+targetUrl+"?page="+(currentPage+1)+"&"+param+"'>ä¸‹ä¸€é¡µ</a></li>");	
 			}
-			pageCode.append("<li><a href='"+targetUrl+"?page="+totalPage+"&"+param+"'>Î²Ò³</a></li>");
+			pageCode.append("<li><a href='"+targetUrl+"?page="+totalPage+"&"+param+"'>å°¾é¡µ</a></li>");
 			return pageCode.toString();
 		}
 	}
